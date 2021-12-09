@@ -31,6 +31,20 @@ const getRecipeName = async (req, res)=> {
     }
     
 }
+const getRecipeId = async (req, res)=>{
+
+}
+
+
+const getDiets = async (req, res)=>{
+
+}
+
+
+const createRecipe = async (req, res)=>{
+
+}
+
 
 module.exports = {
     getRecipeName
