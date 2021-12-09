@@ -1,0 +1,9 @@
+export const GETRECIPE = 'GET_RECIPE';
+export const GETDIETS = 'GET_DIETS';
+export const HIGHPUNT = 'HIGH_TO_LOW';
+export const LOWERPUNT = 'LOW_TO_HIGH';
+export const ASCNAME = 'ORDER_ASCENDENT';
+export const DESCNAME = 'ORDER_DESCENDENT';
+export const SHOWPAGE = 'SHOW_PAGE_NUMBER';
+export const PAGES = 'GET_NUMBER_PAGE';
+export const SNAME = 'SEARCH_BY_NAME';
