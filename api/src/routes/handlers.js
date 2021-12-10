@@ -53,7 +53,7 @@ const getRecipeId = async (req, res)=>{
 
 const getDiet = async (req, res)=>{
     try {
-        const tipos = ["gluten free","dairy free","paleolithic","ketogenic","lacto bla","fsdfsdf","sssss"]
+        const tipos = ["gluten free","dairy free","paleolithic","ketogenic","lacto bla","vegetarian","lacto vegetarian","ovo vegetarian","vegan","pescetarian","paleo","primal","whole 30"]
         // let tipos = await getDiets();
         console.log(tipos)
         tipos.forEach(diet => {
@@ -72,17 +72,18 @@ const getDiet = async (req, res)=>{
 
 const createRecipe = async (req, res)=>{
     try{
-        const { name, summary, rating, healthScore, steps } = req.body;
-        let splitSteps = steps.split(',');
+        const { name, summary, ranking, healthScore, steps, diets } = req.body;
+        let splitSteps = steps.split(', ');
         const newRecipe = await Recipe.create({
             name,
             summary,
-            rating,
+            ranking,
             healthScore,
             steps: splitSteps
         })
-        for(let i=0; i < splitSteps.length; i++){
-            newRecipe.addDiets(await Diets.findOne({ where:{ name: splitSteps[i]}}))
+        for(let i=0; i < diets.length; i++){
+            let a = await Diets.findOne({ where:{ name: diets[i]}})
+            newRecipe.addDiets(a)
         }
         res.send(newRecipe)
     }
