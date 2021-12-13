@@ -53,9 +53,9 @@ export default function rootReducer(state = initialState, {type, payload}){
                         showPage: pageToShow
                     }
             case SNAME: 
-                let matched = aux.filter(r => {
-                    if(payload === '') return r;
-                    if(payload && r.name.toLowerCase().includes(payload.toLowerCase())) return r;
+                if(payload === '') return aux;
+                let matched = aux.filter(r => { 
+                    r.name.toLowerCase().includes(payload.toLowerCase())
                 })
                     return {
                         ...state,
@@ -66,7 +66,7 @@ export default function rootReducer(state = initialState, {type, payload}){
                 let match = aux.find(r => r.id === payload);
                     return {
                         ...state,
-                        recipe: match
+                        recipe: match[0]
                     }
             case ASCNAME: // A-Z
                 let aToZ = actualRecipes.sort((pre, pos)=> {
@@ -97,6 +97,26 @@ export default function rootReducer(state = initialState, {type, payload}){
                 return {
                     ...state, 
                     recipes: byDiet
+                }
+            case LOWERPUNT: 
+                let lowToHigh = actualRecipes.sort((pre,pos)=>{
+                    if(pre.ranking < pos.ranking) return 1;
+                    else if (pre.ranking > pos.ranking) return -1;
+                    else return 0
+                })
+                return {
+                    ...state,
+                    recipes: lowToHigh
+                }
+            case HIGHPUNT:
+                let highToLow = actualRecipes.sort((pre,pos)=>{
+                    if(pre.ranking < pos.ranking) return -1;
+                    else if (pre.ranking > pos.ranking) return 1;
+                    else return 0
+                })
+                return {
+                    ...state,
+                    recipes: highToLow
                 }
             default:
                 return state

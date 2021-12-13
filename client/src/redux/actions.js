@@ -19,7 +19,7 @@ export const bringRecipes = () => {
                 steps: r.steps,
                 diets: diets, // diets = joined
                 healthScore: r.healthScore,
-                rating: r.rating
+                ranking: r.ranking
             }
         })
         return dispatch({
@@ -81,5 +81,17 @@ export const recipeDetails = (id) => {
     return { 
         type: RECIPE,
         payload: id
+    }
+}
+
+export const lowerToHigher = () => {
+    return {
+        type: LOWERPUNT
+    }
+}
+
+export const higherToLower = () => {
+    return {
+        type: HIGHPUNT
     }
 }
