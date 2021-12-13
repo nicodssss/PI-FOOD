@@ -25,6 +25,10 @@ module.exports = (sequelize) => {
     },
     steps: {
       type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    createdInDb: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     }
   },
   {

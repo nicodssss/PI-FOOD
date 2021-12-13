@@ -1,11 +1,11 @@
 /* axios */
 import axios from 'axios';
 /* import types CONST's*/
-import {GETRECIPE,GETDIETS,HIGHPUNT,LOWERPUNT,ASCNAME,DESCNAME,SHOWPAGE,SNAME,PAGES} from './actionsTypes.js';
+import {GETRECIPE,GETDIETS,HIGHPUNT,LOWERPUNT,ASCNAME,DESCNAME,SHOWPAGE,SNAME,PAGES, DIET, RECIPE} from './actionsTypes.js';
 /* my server in back */
 const server = 'http://localhost:3001'
 const recipeDb = 'http://localhost:3001/recipes';
-const dietsDb = 'http://localhost:3001/diets';
+const dietsDb = 'http://localhost:3001/types';
 
 export const bringRecipes = () => {
     return async (dispatch) => {
@@ -42,11 +42,44 @@ export const bringDiets = () => {
 
 export const createRecipe = async (state) => { //recive the state(req,res)
     try {
-        await axios.post(`${server}/create`, state)
+        await axios.post(`${server}/recipe`, state)
         return window.alert(`The recipe ${state.name} has been created with success`)
     } catch(e){
         return window.alert('There was an error')
     }
 }
 
+export const showPageN = (p) => {
+    return {
+        type: SHOWPAGE,
+        payload: p
+    }
+}
 
+export const getPages = () => {
+    return { type: PAGES }
+}
+
+export const orderAtoZ = () => { return { type: ASCNAME}}
+export const orderZtoA = () => { return { type: DESCNAME}}
+
+export const filterbyDiet = (diet) => {
+    return {
+        type: DIET,
+        payload: diet
+    }
+}
+
+export const searchName = (name) => {
+    return {
+        type: SNAME,
+        payload: name
+    }
+}
+
+export const recipeDetails = (id) => {
+    return { 
+        type: RECIPE,
+        payload: id
+    }
+}

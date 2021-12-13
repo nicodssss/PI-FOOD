@@ -5,5 +5,7 @@ export const LOWERPUNT = 'LOW_TO_HIGH';
 export const ASCNAME = 'ORDER_ASCENDENT';
 export const DESCNAME = 'ORDER_DESCENDENT';
 export const SHOWPAGE = 'SHOW_PAGE_NUMBER';
+export const DIET = 'FILTER_BY_DIET'
 export const PAGES = 'GET_NUMBER_PAGE';
 export const SNAME = 'SEARCH_BY_NAME';
+export const RECIPE = 'SHOW_RECIPE_ID';

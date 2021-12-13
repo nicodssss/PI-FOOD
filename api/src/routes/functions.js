@@ -7,7 +7,7 @@ const {
   } = process.env
 const api = 'https://api.spoonacular.com/recipes/complexSearch?apiKey='
 const otherParams = '&addRecipeInformation=true&number=100'
-const { Recipe, Diet } = require('../db');
+const { Recipe, Diets } = require('../db');
 
 const getApiRecipes = async () => {
     const response = await axios(`${api}${API_KEY}${otherParams}`);
@@ -31,7 +31,8 @@ const getApiRecipes = async () => {
             summary: recipe.summary, //Summary of the recipe
             steps: recipe.analyzedInstructions.steps, // Contains an array with {number,steps,ingredients(arr),equipment(arr)}
             healthScore: recipe.healthScore, // rating between 1 and 100. ex 76.0
-            rating: recipe.aggregateLikes // likes given to the food ex. 3689
+            ranking: recipe.aggregateLikes, // likes given to the food ex. 3689
+            createdInDb: false
         }
     ))
     return recipes
@@ -39,7 +40,7 @@ const getApiRecipes = async () => {
 
 const getDbRecipes = async ()=> {
     return await Recipe.findAll({
-        include: Diet
+        include: Diets
     })
 };
 
